@@ -164,6 +164,9 @@ class Warrior(Player):
         Override the basic attack to make it warrior-specific.
         Warriors should do extra physical damage.
         """
+        damage = self.strength + 5 #changes the total amount of damage being dealt to plus 5 the normal rate
+        print(f"{self.name} slashes powerfully for {damage} damage!")
+        target.take_damage(damage)
         # TODO: Implement warrior attack
         # Should do more damage than basic attack
         # Maybe strength + 5 bonus damage?
@@ -173,6 +176,9 @@ class Warrior(Player):
         """
         Special warrior ability - a powerful attack that does extra damage.
         """
+        damage = self.strength * 2 #this changes the damage being dealt to be two times as strong as the regular damage but is a special ability only for warrior class
+        print(f" {self.name} uses Power Strike on {target.name} for {damage} damage!")
+        target.take_damage(damage)
         # TODO: Implement power strike
         # Should do significantly more damage than regular attack
         pass

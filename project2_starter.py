@@ -7,7 +7,7 @@ AI Usage: CHAT GPT
 - help with some of the formatting during the Rogue sections of the code
 - Explained why some features would be better than others (reasoning behind why i used a if statment)
 """
-
+import  random
 # ============================================================================
 # PROVIDED BATTLE SYSTEM (DO NOT MODIFY)
 # ============================================================================

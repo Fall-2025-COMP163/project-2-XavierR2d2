@@ -277,6 +277,8 @@ class Weapon:
         """
         Create a weapon with a name and damage bonus.
         """
+        self.name = name # like it says to do i created a weapon then will set the name of the weapon created later in the code also giving the weapon a damage bonus when used 
+        self.damage_bonus = damage_bonus
         # TODO: Store weapon name and damage bonus
         pass
         
@@ -284,6 +286,9 @@ class Weapon:
         """
         Display information about this weapon.
         """
+        print("==== Weapon Details ===")
+        print(f"Weapon: {self.name}")
+        print(f"Bonus Damage: {self.damage_bonus}")
         # TODO: Print weapon name and damage bonus
         pass
 

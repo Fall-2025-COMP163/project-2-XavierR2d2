@@ -62,7 +62,7 @@ class Character:
         """Initialize basic character attributes"""
         self.name = name
         self.health = health
-        self.strength = strength #sets the Characters 
+        self.strength = strength #sets the Characters variables 
         self.magic = magic
         # TODO: Set the character's name, health, strength, and magic
         # These should be stored as instance variables
@@ -76,6 +76,9 @@ class Character:
         2. Apply damage to the target
         3. Print what happened
         """
+        damage = self.strength #this allows it to print the amount of damage that was delt and also makes a damage variable out of the strength one made previously
+        print(f"{self.name} attacks {target.name} for {damage} damage!")
+        target.take_damage(damage)
         # TODO: Implement basic attack
         # Damage should be based on self.strength
         # Use target.take_damage(damage) to apply damage

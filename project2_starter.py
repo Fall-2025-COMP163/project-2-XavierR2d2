@@ -89,6 +89,10 @@ class Character:
         Reduces this character's health by the damage amount.
         Health should never go below 0.
         """
+        if self.health - damage > 0:
+            self.health -= damage #makes sure that once the characters health gets depleted to less than zero it will be set to zero
+        else:
+            self.health = 0
         # TODO: Implement taking damage
         # Reduce self.health by damage amount
         # Make sure health doesn't go below 0

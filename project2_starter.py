@@ -55,8 +55,11 @@ class SimpleBattle:
 # ============================================================================
 
 class Character:
-    """ Base class for all characters. """
-   
+    """
+    Base class for all characters.
+    This is the top of our inheritance hierarchy.
+    """
+    
     def __init__(self, name, health, strength, magic):
         """Initialize basic character attributes"""
         self.name = name
@@ -64,20 +67,35 @@ class Character:
         self.strength = strength #sets the Characters variables 
         self.magic = magic
         # TODO: Set the character's name, health, strength, and magic
+        # These should be stored as instance variables
         
     def attack(self, target):
-
+        """
+        Basic attack method that all characters can use.
+        This method should:
+        1. Calculate damage based on strength
+        2. Apply damage to the target
+        3. Print what happened
+        """
         damage = self.strength #this allows it to print the amount of damage that was delt and also makes a damage variable out of the strength one made previously
         print(f"{self.name} attacks {target.name} for {damage} damage!")
         target.take_damage(damage)
         # TODO: Implement basic attack
+        # Damage should be based on self.strength
+        # Use target.take_damage(damage) to apply damage
         
     def take_damage(self, damage):
         """
         Reduces this character's health by the damage amount.
         Health should never go below 0.
-        """#makes sure that once the characters health gets depleted to less than zero it will be set to zero
-        self.health = max(0, self.health - damage)
+        """
+        if self.health - damage > 0:
+            self.health -= damage #makes sure that once the characters health gets depleted to less than zero it will be set to zero
+        else:
+            self.health = 0
+        # TODO: Implement taking damage
+        # Reduce self.health by damage amount
+        # Make sure health doesn't go below 0
         
     def display_stats(self):
         """
@@ -85,10 +103,11 @@ class Character:
         """
         print("=== Current Stats ===")
         print(f"Name: {self.name}")
-        print(f"Health: {self.health}") #Just prints the current stats/variables that we have set in place 
-        print(f"Strength: {self.strength}")
+        print(f"Strength: {self.strength}") #Just prints the current stats/variables that we have set in place 
         print(f"Magic: {self.magic}")
+        print(f"Health: {self.health}")
         # TODO: Print character's name, health, strength, and magic
+        # Make it look nice with formatting
 
 class Player(Character):
     """
@@ -105,16 +124,21 @@ class Player(Character):
         self.character_class = character_class  # calls back to the begining where we set the character's variables then makes 3 new ones 
         self.level = 1
         self.experience = 0
-
+        # TODO: Call super().__init__() with the basic character info
+        # TODO: Store the character_class (like "Warrior", "Mage", etc.)
+        # TODO: Add any other player-specific attributes (level, experience, etc.)
+        
     def display_stats(self):
         """
         Override the parent's display_stats to show additional player info.
         Should show everything the parent shows PLUS player-specific info.
         """
-        super.display_stats()
+        super().display_stats()
         print(f"Class: {self.character_class}")
         print(f"Level: {self.level}") #calls the other print of data  the adds the new variables print statments to it 
         print(f"Experience Points: {self.experience}")
+        # TODO: Call the parent's display_stats method using super()
+        # TODO: Then print additional player info like class and level
 
 class Warrior(Player):
     """
@@ -129,7 +153,6 @@ class Warrior(Player):
         super().__init__(name, "Warrior", 120, 15, 5) # calls back to the name variable and adds The title of the class and its other stats that will go with it
         # TODO: Call super().__init__() with warrior-appropriate stats
         # Suggested stats: health=120, strength=15, magic=5
-        pass
         
     def attack(self, target):
         """
@@ -142,7 +165,6 @@ class Warrior(Player):
         # TODO: Implement warrior attack
         # Should do more damage than basic attack
         # Maybe strength + 5 bonus damage?
-        pass
         
     def power_strike(self, target):
         """
@@ -153,7 +175,6 @@ class Warrior(Player):
         target.take_damage(damage)
         # TODO: Implement power strike
         # Should do significantly more damage than regular attack
-        pass
 
 class Mage(Player):
     """
@@ -167,6 +188,8 @@ class Mage(Player):
         Mages should have: low health, low strength, high magic
         """
         super().__init__(name, "Mage", 80, 8, 20) # calls to the name and Enters in the data titling it mage also adding in the stats for the mage class 
+        # TODO: Call super().__init__() with mage-appropriate stats
+        # Suggested stats: health=80, strength=8, magic=20
         
     def attack(self, target):
         """
@@ -176,14 +199,18 @@ class Mage(Player):
         damage = self.magic + 5 #Almost the exact same thing as the strength damage boost section but just with magic as the variable being used
         print(f"{self.name} lauches Magic Bolt for {damage} damage!")
         target.take_damage(damage)
-
+        # TODO: Implement mage attack
+        # Should use self.magic for damage calculation instead of strength
+        
     def fireball(self, target):
         """
         Special mage ability - a powerful magical attack.
         """
-        damage = self.magic + 20  # same as the speical attack for the warrior class just this one is only for the Mage class
+        damage = self.magic * 2  # same as the speical attack for the warrior class just this one is only for the Mage class
         target.take_damage(damage) # to make it different I changed the amount of speical damage to make each class more unique 
         print(f"{self.name} attacks {target.name} for {damage} damage!")
+        # TODO: Implement fireball spell
+        # Should do magic-based damage with bonus
 
 class Rogue(Player):
     """
@@ -197,7 +224,8 @@ class Rogue(Player):
         Rogues should have: medium health, medium strength, medium magic
         """
         super().__init__(name, "Rogue", 90, 12, 10) # calls back to the name variable and sets it to Rogue then adds the stats that go with that new class
-
+        # TODO: Call super().__init__() with rogue-appropriate stats
+        # Suggested stats: health=90, strength=12, magic=10
         
     def attack(self, target):
         """
@@ -212,15 +240,19 @@ class Rogue(Player):
             damage = self.strength
             print(f"{self.name} swiftly attacks for {damage} damage.")
         target.take_damage(damage)
-
+        # TODO: Implement rogue attack
+        # Could add a chance for critical hit (double damage)
+        # Hint: use random.randint(1, 10) and if result <= 3, it's a crit
         
     def sneak_attack(self, target):
         """
         Special rogue ability - guaranteed critical hit.
         """
-        damage = self.strength + 15
-        target.takedamage(damage) #using this ability will allow a sure hit with the increased damaged 
-
+        damage = self.strength * 2
+        print(f"{self.name} performs a Sneak Attack on {target.name} for {damage} damage!")
+        target.take_damage(damage) #using this ability will allow a sure hit with the increased damaged 
+        # TODO: Implement sneak attack
+        # Should always do critical damage
 
 class Weapon:
     """
@@ -234,7 +266,7 @@ class Weapon:
         """
         self.name = name # like it says to do i created a weapon then will set the name of the weapon created later in the code also giving the weapon a damage bonus when used 
         self.damage_bonus = damage_bonus
-
+        # TODO: Store weapon name and damage bonus
         
     def display_info(self):
         """
@@ -243,6 +275,7 @@ class Weapon:
         print("==== Weapon Details ===")
         print(f"Weapon: {self.name}")
         print(f"Bonus Damage: {self.damage_bonus}")
+        # TODO: Print weapon name and damage bonus
 
 # ============================================================================
 # MAIN PROGRAM FOR TESTING (YOU CAN MODIFY THIS FOR TESTING)

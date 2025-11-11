@@ -102,6 +102,11 @@ class Character:
         """
         Prints the character's current stats in a nice format.
         """
+        print("=== Current Stats ===")
+        print(f"Name: {self.name}")
+        print(f"Strength: {self.strength}") #Just prints the current stats/variables that we have set in place 
+        print(f"Magic: {self.magic}")
+        print(f"Health: {self.health}")
         # TODO: Print character's name, health, strength, and magic
         # Make it look nice with formatting
         pass

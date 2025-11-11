@@ -233,6 +233,7 @@ class Rogue(Player):
         Create a rogue with appropriate stats.
         Rogues should have: medium health, medium strength, medium magic
         """
+        super().__init__(name, "Rogue", 90, 12, 10) # calls back to the name variable and sets it to Rogue then adds the stats that go with that new class
         # TODO: Call super().__init__() with rogue-appropriate stats
         # Suggested stats: health=90, strength=12, magic=10
         pass
@@ -242,6 +243,15 @@ class Rogue(Player):
         Override the basic attack to make it rogue-specific.
         Rogues should have a chance for extra damage (critical hits).
         """
+        # AI was used for the Logical parts of this code
+        crit_chance = random.randint(1, 10)
+        if crit_chance <= 3:
+            damage = self.strength + 20
+            print(f" CRITICAL HIT! {self.name} strikes {target.name} for {damage} damage!")
+        else: # but with all this code it just means with every attack there will be a dice rolled and if the number it lands on is less than or equal to 3 it will impliment that bonus damage 
+            damage = self.strength
+            print(f"{self.name} swiftly attacks for {damage} damage.")
+        target.take_damage(damage)
         # TODO: Implement rogue attack
         # Could add a chance for critical hit (double damage)
         # Hint: use random.randint(1, 10) and if result <= 3, it's a crit
@@ -251,6 +261,8 @@ class Rogue(Player):
         """
         Special rogue ability - guaranteed critical hit.
         """
+        damage = self.strength + 15
+        target.takedamage(damage) #using this ability will allow a sure hit with the increased damaged 
         # TODO: Implement sneak attack
         # Should always do critical damage
         pass

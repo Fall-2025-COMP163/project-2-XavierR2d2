@@ -149,12 +149,12 @@ class Warrior(Player):
     Warrior class - strong physical fighter.
     Inherits from Player.
     """
-    
     def __init__(self, name):
         """
         Create a warrior with appropriate stats.
         Warriors should have: high health, high strength, low magic
         """
+        super().__init__(name, "Warrior", 120, 15, 5) # calls back to the name variable and adds The title of the class and its other stats that will go with it
         # TODO: Call super().__init__() with warrior-appropriate stats
         # Suggested stats: health=120, strength=15, magic=5
         pass

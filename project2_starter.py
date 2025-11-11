@@ -194,6 +194,7 @@ class Mage(Player):
         Create a mage with appropriate stats.
         Mages should have: low health, low strength, high magic
         """
+        super().__init__(name, "Mage", 80, 8, 20) # calls to the name and Enters in the data titling it mage also adding in the stats for the mage class 
         # TODO: Call super().__init__() with mage-appropriate stats
         # Suggested stats: health=80, strength=8, magic=20
         pass
@@ -203,6 +204,9 @@ class Mage(Player):
         Override the basic attack to make it magic-based.
         Mages should use magic for damage instead of strength.
         """
+        damage = self.magic + 5 #Almost the exact same thing as the strength damage boost section but just with magic as the variable being used
+        print(f"{self.name} lauches Magic Bolt for {damage} damage!")
+        target.take_damage(damage)
         # TODO: Implement mage attack
         # Should use self.magic for damage calculation instead of strength
         pass
@@ -211,6 +215,9 @@ class Mage(Player):
         """
         Special mage ability - a powerful magical attack.
         """
+        damage = self.magic + 20  # same as the speical attack for the warrior class just this one is only for the Mage class
+        target.take_damage(damage) # to make it different I changed the amount of speical damage to make each class more unique 
+        print(f"{self.name} attacks {target.name} for {damage} damage!")
         # TODO: Implement fireball spell
         # Should do magic-based damage with bonus
         pass
